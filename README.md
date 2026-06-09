@@ -28,170 +28,64 @@ This project implements a Retrieval-Augmented Generation (RAG) chatbot that answ
 * LangSmith Tracing
 * Gradio Chatbot Interface
 
-## Architecture
+```mermaid
+flowchart TD
 
-PDF Document
-↓
-PyPDFLoader
-↓
-Text Splitter
-↓
-Embedding Model
-↓
-ChromaDB
+    A[PDF Document<br>Python Built-In Functions.pdf]
+    B[PyPDFLoader]
+    C[LangChain Documents]
+    D[CharacterTextSplitter]
+    E[Text Chunks]
+    F[HuggingFace BGE Embeddings]
+    G[Vector Embeddings]
+    H[Chroma Vector Database]
 
-User Question
-↓
-Retriever
-↓
-Relevant Chunks
-↓
-Groq LLM
-↓
-Final Response
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
 
-## Technologies Used
+    I[User]
+    J[Gradio / Streamlit Frontend]
+    K[User Question]
+    L[Question Embedding]
+    M[Similarity Search]
+    N[Retrieve Relevant Chunks]
+    O[Prompt Construction]
+    P[Groq Llama 3.3 LLM]
+    Q[Generated Response]
 
-* Python
-* LangChain
-* ChromaDB
-* Hugging Face Embeddings
-* Groq Llama 3.3
-* LangSmith
-* Gradio
+    I --> J
+    J --> K
+    K --> L
+    L --> M
+    H --> M
+    M --> N
+    N --> O
+    O --> P
+    P --> Q
+    Q --> J
+    J --> I
 
-## Project Structure
+    R[LangSmith Tracking]
+    S[Monitor Retrieval]
+    T[Monitor Prompts]
+    U[Monitor LLM Calls]
+    V[Monitor Response Time]
 
-* Notebook: RAG_integration_with_llmops.ipynb
-* Dependencies: requirements.txt
-* Documentation: README.md
+    N --> R
+    O --> R
+    P --> R
 
-# RAG Chatbot with LangChain, ChromaDB, Groq & LangSmith
+    R --> S
+    R --> T
+    R --> U
+    R --> V
+```
 
-## Architecture
-
-### Document Ingestion Phase (One-Time Process)
-
-PDF Document
-(Python Built-In Functions.pdf)
-        ↓
-PyPDFLoader
-        ↓
-Load PDF into LangChain Documents
-        ↓
-CharacterTextSplitter
-        ↓
-Create Chunks
-(chunk_size=2000, chunk_overlap=400)
-        ↓
-HuggingFace BGE Embedding Model
-        ↓
-Convert Chunks into Embeddings (Vectors)
-        ↓
-Chroma Vector Database
-        ↓
-Store Vector Embeddings
-
-
-### User Query Phase
-
-User
-        ↓
-Frontend (Gradio / Streamlit)
-        ↓
-User Question
-        ↓
-LangChain
-        ↓
-HuggingFace BGE Embedding Model
-        ↓
-Convert Question into Embedding
-        ↓
-Chroma Vector Database
-        ↓
-Similarity Search
-        ↓
-Retrieve Most Relevant Chunks
-        ↓
-LangChain Prompt Template
-        ↓
-Groq Llama 3.3 LLM
-        ↓
-Generate Context-Aware Response
-        ↓
-Frontend
-        ↓
-User
-
-
-### LLMOps & Monitoring Phase
-
-User Query
-        ↓
-Retriever
-        ↓
-Retrieved Chunks
-        ↓
-Prompt Creation
-        ↓
-Groq LLM Response
-        ↓
-Execution Metrics
-        ↓
-LangSmith Tracking
-        ↓
-Monitoring, Debugging & Observability
-
-
-## End-to-End Workflow
-
-PDF
-        ↓
-PyPDFLoader
-        ↓
-Text Extraction
-        ↓
-Chunking
-        ↓
-Embeddings
-        ↓
-Chroma Vector Database
-
-====================================================
-
-User Question
-        ↓
-Frontend
-        ↓
-LangChain
-        ↓
-Question Embedding
-        ↓
-Vector Search
-        ↓
-Retrieve Relevant Chunks
-        ↓
-Groq LLM
-        ↓
-Generate Answer
-        ↓
-Frontend
-        ↓
-User
-
-====================================================
-
-LangSmith
-        ↓
-Track Retrieval
-        ↓
-Track Prompt
-        ↓
-Track LLM Calls
-        ↓
-Track Response Time
-        ↓
-Monitor Entire RAG Pipeline
 
 
 ## Tech Stack
