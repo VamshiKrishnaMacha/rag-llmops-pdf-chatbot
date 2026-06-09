@@ -5,11 +5,12 @@ RAG-based PDF Chatbot built using LangChain, ChromaDB, Hugging Face Embeddings, 
 # RAG PDF Chatbot with LLMOps
 ## Gradio Chatbot Interface
 
-![Gradio Chatbot](RAG_PDF_ChatBot.png)
+![Gradio Chatbot](screenshots/RAG_PDF_ChatBot.png)
 
 ## LangSmith Tracing
 
-![LangSmith Tracing](Tracing.png)
+![LangSmith Tracing](screenshots/Tracing.png)
+
 
 ## Project Overview
 
