@@ -28,6 +28,26 @@ This project implements a Retrieval-Augmented Generation (RAG) chatbot that answ
 * LangSmith Tracing
 * Gradio Chatbot Interface
 
+## Architecture
+
+<p align="center">
+  <img src="screenshots/architecture.png" alt="RAG Chatbot Architecture" width="1000"/>
+</p>
+
+### Project Workflow
+
+1. Load PDF using PyPDFLoader
+2. Split document into chunks using CharacterTextSplitter
+3. Generate embeddings using HuggingFace BGE
+4. Store embeddings in Chroma Vector Database
+5. User asks a question through Gradio/Streamlit
+6. Question is converted into embeddings
+7. Similarity search is performed in ChromaDB
+8. Relevant chunks are retrieved
+9. Context and question are sent to Groq Llama 3.3
+10. LLM generates a contextual response
+11. LangSmith tracks retrieval, prompts, LLM calls, latency, and responses
+
 ```mermaid
 flowchart TD
 
